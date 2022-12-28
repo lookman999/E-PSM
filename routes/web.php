@@ -82,7 +82,7 @@ use App\Http\Controllers\coordinatorController;
 
 Route::get('coordinatorprofile', [coordinatorController::class, 'index']);
 Route::get('COedit', [coordinatorController::class, 'editprofile']);
-Route::post('CO_update', 'coordinatorController@update');
+Route::post('CO_update', 'coordinatorController@updateCOprofile');
 
 //MeetingBooking
 use App\Http\Controllers\MeetingController;

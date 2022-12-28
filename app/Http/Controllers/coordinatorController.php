@@ -36,8 +36,23 @@ class coordinatorController extends Controller
 
     }
 
-    public function updatecoordinator(Request $req)
+    public function updateCOprofile(Request $req)
     {
+        $faculty = $req->input('faculty');
+        $office = $req->input('office');
+        $phone = $req->input('phone');
+        $email = $req->input('email');
 
+        //table users
+        $users = users::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $users->phone = $phone;
+        $users->email = $email;
+        $users->save();
+        //table coordinators
+        $coordinators = coordinators::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $coordinators->faculty = $faculty;
+        $coordinators->office = $office;
+        $coordinators->save();
+        return redirect("coordinatorprofile");
     }
 }

@@ -53,7 +53,7 @@ $roles = session()->get('user_type');
                                 </tr>
                                 <tr>
                                     <td width="30%">
-                                        <h2><br> Supervisor ID</h2>
+                                        <h2><br> Coordinator ID</h2>
                                     </td>
                                     <td width="70%">
                                         <h3><br>:&nbsp&nbsp{{$coordinators[0]->userID}}</h3>

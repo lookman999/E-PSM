@@ -47,7 +47,7 @@ class technicianController extends Controller
         $users->phone = $phone;
         $users->email = $email;
         $users->save();
-        //table students
+        //table technicians
         $technicians = technicians::where('userID', '=', session()->get('logged_user'))->get()->first();
         $technicians->office = $office;
         $technicians->save();
