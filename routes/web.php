@@ -76,7 +76,7 @@ use App\Http\Controllers\technicianController;
 
 Route::get('technicianprofile', [technicianController::class, 'index']);
 Route::get('TECHedit', [technicianController::class, 'editprofile']);
-Route::post('TECH_update', 'technicianController@update');
+Route::post('TECH_update', 'technicianController@updateTECHprofile');
 
 use App\Http\Controllers\coordinatorController;
 

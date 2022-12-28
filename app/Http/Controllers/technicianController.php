@@ -36,8 +36,21 @@ class technicianController extends Controller
 
     }
 
-    public function updatetechnician(Request $req)
+    public function updateTECHprofile(Request $req)
     {
+        $office = $req->input('office');
+        $phone = $req->input('phone');
+        $email = $req->input('email');
 
+        //table users
+        $users = users::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $users->phone = $phone;
+        $users->email = $email;
+        $users->save();
+        //table students
+        $technicians = technicians::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $technicians->office = $office;
+        $technicians->save();
+        return redirect("technicianprofile");
     }
 }
