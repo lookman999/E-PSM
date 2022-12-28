@@ -36,8 +36,25 @@ class supervisorController extends Controller
 
     }
 
-    public function updatesupervisor(Request $req)
+    public function updateSVprofile(Request $req)
     {
+        $faculty = $req->input('faculty');
+        $expertise = $req->input('expertise');
+        $office = $req->input('office');
+        $phone = $req->input('phone');
+        $email = $req->input('email');
 
+        //table users
+        $users = users::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $users->phone = $phone;
+        $users->email = $email;
+        $users->save();
+        //table supervisors
+        $supervisors = supervisors::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $supervisors->faculty = $faculty;
+        $supervisors->expertise = $expertise;
+        $supervisors->office = $office;
+        $supervisors->save();
+        return redirect("supervisorprofile");
     }
 }

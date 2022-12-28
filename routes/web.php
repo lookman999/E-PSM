@@ -69,7 +69,7 @@ use App\Http\Controllers\supervisorController;
 
 Route::get('supervisorprofile', [supervisorController::class, 'index']);
 Route::get('SVedit', [supervisorController::class, 'editprofile']);
-Route::post('SV_update', 'supervisorController@update');
+Route::post('SV_update', 'supervisorController@updateSVprofile');
 // url tak boleh sama tapi ada cara kalau nak pakai url sama
 
 use App\Http\Controllers\technicianController;
