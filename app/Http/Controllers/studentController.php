@@ -37,9 +37,28 @@ class studentController extends Controller
 
     }
 
-    public function updatestudent(Request $req)
+    public function updateSTDprofile(Request $req)
     {
+        $faculty = $req->input('faculty');
+        $course = $req->input('course');
+        $sem_year = $req->input('sem_year');
+        $address = $req->input('address');
+        $phone = $req->input('phone');
+        $email = $req->input('email');
 
+        //table users
+        $users = users::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $users->phone = $phone;
+        $users->email = $email;
+        $users->save();
+        //table students
+        $students = students::where('userID', '=', session()->get('logged_user'))->get()->first();
+        $students->faculty = $faculty;
+        $students->course = $course;
+        $students->sem_year = $sem_year;
+        $students->address = $address;
+        $students->save();
+        return redirect("studentprofile");
     }
 
     /**

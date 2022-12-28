@@ -63,7 +63,7 @@ use App\Http\Controllers\studentController;
 
 Route::get('studentprofile', [studentController::class, 'index']);
 Route::get('STDedit', [studentController::class, 'editprofile']);
-Route::post('STD_update', 'studentController@update');
+Route::post('STD_update', 'studentController@updateSTDprofile');
 
 use App\Http\Controllers\supervisorController;
 
