@@ -47,39 +47,23 @@ Route::post('user_reset', 'UsersController@resetpassword');
 
 Route::get('/logout', 'UsersController@logout');
 
-// Route::get('/details', function () {
-//     //getting user logged session
-//     $logged_user = session()->get('logged_user');
-
-//     if (!$logged_user) {
-//         return redirect('/');
-//     } else {
-//         return view('semakan.semak_details');
-//     }
-// })->name('details');
-
 //Profile
 use App\Http\Controllers\studentController;
-
 Route::get('studentprofile', [studentController::class, 'index']);
-Route::get('STDedit', [studentController::class, 'editprofile']);
+Route::get('STDedit', [studentController::class, 'editprofileSTD']);
 Route::post('STD_update', 'studentController@updateSTDprofile');
 
 use App\Http\Controllers\supervisorController;
-
 Route::get('supervisorprofile', [supervisorController::class, 'index']);
 Route::get('SVedit', [supervisorController::class, 'editprofile']);
 Route::post('SV_update', 'supervisorController@updateSVprofile');
-// url tak boleh sama tapi ada cara kalau nak pakai url sama
 
 use App\Http\Controllers\technicianController;
-
 Route::get('technicianprofile', [technicianController::class, 'index']);
 Route::get('TECHedit', [technicianController::class, 'editprofile']);
 Route::post('TECH_update', 'technicianController@updateTECHprofile');
 
 use App\Http\Controllers\coordinatorController;
-
 Route::get('coordinatorprofile', [coordinatorController::class, 'index']);
 Route::get('COedit', [coordinatorController::class, 'editprofile']);
 Route::post('CO_update', 'coordinatorController@updateCOprofile');

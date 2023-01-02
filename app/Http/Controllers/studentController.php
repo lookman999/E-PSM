@@ -25,7 +25,7 @@ class studentController extends Controller
         //var_dump($users);
     }
 
-    public function editprofile()
+    public function editprofileSTD()
     {
         $USER_ID = session()->get('logged_user');
         $users = DB::table('users')
