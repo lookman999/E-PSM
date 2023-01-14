@@ -67,6 +67,10 @@ class ManageTitleController extends Controller
     {   $USER_ID = session()->get('logged_user');
         $title = new Title;
 
+        request()->validate([
+          'psm_title' => 'required',
+        ]);
+
         $title->stdID = $USER_ID;
         $title->svID = session()->get('logged_user');
         $title->psm_title = $request->psm_title;

@@ -15,7 +15,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Project title</label>
-                            <input type="text" name="psm_title" class="form-control">
+                            <input type="text" name="psm_title" class="form-control @error('psm_title') is-invalid @enderror">
+                            @error('psm_title')
+                              <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
