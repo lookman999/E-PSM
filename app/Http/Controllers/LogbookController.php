@@ -67,9 +67,10 @@ class LogbookController extends Controller
     function deletelogbook(Request $req)
     {
         DB::table('logbooks')->where('id', '=', $req->id)->delete();
-        return redirect("LogbookViewStd")->with('deletelogbook', 'Logbook has been updated.');
+        return redirect("LogbookViewStd")->with('deletelogbook', 'Logbook has been deleted.');
     }
 
+    //check show logbook, function or not 
     public function showLogbook ($id)
         {
         $users = DB::select('select * from logbooks where id = ?',[$id]);
