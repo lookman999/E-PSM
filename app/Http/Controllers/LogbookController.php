@@ -36,7 +36,7 @@ class LogbookController extends Controller
         $users = DB::table('logbooks')
 
             ->get();
-        return View('Logbook.LogbookViewStd')->with('meetings', $users);
+        return View('Logbook.LogbookViewSV')->with('meetings', $users);
     }
 
     function logbookDelete()
@@ -67,7 +67,7 @@ class LogbookController extends Controller
     function deletelogbook(Request $req)
     {
         DB::table('logbooks')->where('id', '=', $req->id)->delete();
-        return redirect("LogbookViewStd");
+        return redirect("LogbookViewStd")->with('deletelogbook', 'Logbook has been updated.');
     }
 
     public function showLogbook ($id)
@@ -91,8 +91,13 @@ class LogbookController extends Controller
             DB::table('Logbooks')->where('id', $id)
             ->update(['Description' => $request->Description]);
 
-        echo "Record updated successfully.<br/>";
-        echo '<a href = "/LogbookViewStd">Click Here</a> to go back.';
+            return redirect("/LogbookViewStd")->with('updateLogbook', 'Logbook has been updated.');
         }
+
+    public function viewLogbookSV ($id)
+    {
+        $users = DB::select('select * from logbooks where id = ?',[$id]);
+        return view ('Logbook/LogbookSVView',['users'=>$users]);
+    }
 
 }

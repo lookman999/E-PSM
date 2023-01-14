@@ -49,7 +49,7 @@
                   <br><br>
                   <h2><br></h2>
                   <input type="submit" name="Submit" id="Submit" value="Submit" class="button-73">
-                  <a class="button-73" role="button" href="LogbookViewSV">View Logbook</a>
+                  <a class="button-73" role="button" href="LogbookViewStd">View Logbook</a>
                   <h2><br></h2>
             </form>
           </td>
