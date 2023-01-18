@@ -6,7 +6,8 @@ use App\Models\SvHunting as SvHunting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\users;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\supervisors;
 
 class SvHuntingController extends Controller
 {
@@ -35,11 +36,21 @@ class SvHuntingController extends Controller
     function viewSVList() // view supervisor list
     {
         $USER_ID = session()->get('logged_user');
-        $users = DB::table('svhunting')
-            ->where('userID', '=', $USER_ID)
-          ->get();
-          //var_dump($users); die();
-        return View('SvHunting.ViewSVList')->with('SvHunting', $users);
+        // $users = DB::table('svhunting')
+        //     ->where('userID', '=', $USER_ID)
+        //   ->get();
+        //   var_dump($users); die();
+        $users = DB::table('supervisors')->get();
+        // print_r($users);exit;
+        return View('SvHunting.ViewSVList',compact('users'));
+        // return View('SvHunting.ViewSVList')->with('SvHunting', $users);
+    }
+
+    public function destroy($id)
+    {
+        $users = supervisors::findOrFail($id)->delete();
+        // print_r($users);exit;
+        return redirect()->back()->with('danger', 'Supervisors Deleted Successfully');
     }
 
     function viewSVListCo() // view supervisor list
@@ -63,6 +74,37 @@ class SvHuntingController extends Controller
 
     }
 
+    function AddrecordSV(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'Name' => 'required|string',
+                'Faculty' => 'required',
+                'Expertise' => 'required',
+                'Office' => 'required',
+                'Email' => 'required|email',
+                'Phone_Number' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()->with('error', 'Something went wrong');
+            } else {
+                $sv = new supervisors;
+                $sv->userID = $request->Supervisor_ID;
+                $sv->std_name = $request->Name;
+                $sv->faculty = $request->Faculty;
+                $sv->expertise = $request->Expertise;
+                $sv->office = $request->Office;
+                $sv->phone_number = $request->Phone_Number;
+                $sv->email = $request->Email;
+                $sv->save();
+                return redirect(route('Addsv'))->with('success', 'Your Record are inserted');
+            }
+        }
+        catch(\Exception $e)
+        {
+            return redirect()->back()->with('error', 'Something went wrong'. $e);
+        }
+    }
     function Apply(Request $req) // view supervisor list
     {
         $title = $req->input('title');
